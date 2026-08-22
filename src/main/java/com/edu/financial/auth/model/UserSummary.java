@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 public class UserSummary {
 
     private Long userId;
-
     private String fullName;
-
     private String email;
 }

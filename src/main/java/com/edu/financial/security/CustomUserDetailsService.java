@@ -1,7 +1,9 @@
 package com.edu.financial.security;
 
+import com.edu.financial.auth.model.UserPrincipal;
 import com.edu.financial.user.entity.User;
 import com.edu.financial.user.repository.UserRepository;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,12 +23,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                     new UsernameNotFoundException("User not found")
                 );
 
-
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail())
-                .password(user.getPassword())
-                .disabled(!user.getActive())
-                .authorities("USER")
-                .build();
+        return new UserPrincipal(user);
     }
 }
